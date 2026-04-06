@@ -1,0 +1,21 @@
+services:
+  backapp:
+    image: cubix-backapp:latest
+    container_name: cubix-backapp
+    environment:
+      APP_DEFAULT_MESSAGE: ""
+      CUBIX_HOMEWORK: "Posztor Imre Zsolt"
+    expose:
+      - "8080"
+
+  frontapp:
+    image: cubix-frontapp:latest
+    container_name: cubix-frontapp
+    depends_on:
+      - backapp
+    environment:
+      APP_DEFAULT_MESSAGE: ""
+      CUBIX_HOMEWORK: "Posztor Imre Zsolt"
+      BACK_URL: "http://backapp:8080"
+    ports:
+      - "8080:8080"
