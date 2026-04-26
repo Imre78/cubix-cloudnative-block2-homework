@@ -4,12 +4,10 @@ metadata:
   name: frontapp
   labels:
     homework: frontapp
-    training: block4
 spec:
   type: ClusterIP
   selector:
     homework: frontapp
-    training: block4
   ports:
     - port: 8080
       targetPort: 8080

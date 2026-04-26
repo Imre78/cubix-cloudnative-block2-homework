@@ -4,12 +4,10 @@ metadata:
   name: backapp
   labels:
     homework: backapp
-    training: block4
 spec:
   type: ClusterIP
   selector:
     homework: backapp
-    training: block4
   ports:
     - port: 8080
       targetPort: 8080

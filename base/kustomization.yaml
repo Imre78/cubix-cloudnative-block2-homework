@@ -3,3 +3,8 @@ resources:
   - backapp-service.yaml
   - frontapp-deployment.yaml
   - frontapp-service.yaml
+
+labels:
+  - pairs:
+      training: block4
+    includeSelectors: true

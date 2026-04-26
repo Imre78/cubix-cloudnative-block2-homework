@@ -2,4 +2,3 @@ namespace: hw4-dev
 
 resources:
   - ../../base
-  - namespace.yaml
