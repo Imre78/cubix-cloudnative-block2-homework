@@ -3,19 +3,18 @@ kind: Deployment
 metadata:
   name: backapp
   labels:
-    training: block3
+    app: backapp
     homework: backapp
+    training: block3
 spec:
   replicas: 1
   selector:
     matchLabels:
-      training: block3
-      homework: backapp
+      app: backapp
   template:
     metadata:
       labels:
-        training: block3
-        homework: backapp
+        app: backapp
     spec:
       containers:
         - name: backapp
@@ -27,19 +26,3 @@ spec:
               value: "backapp"
             - name: JAVA_OPTS
               value: "-Dspring.main.banner-mode=off"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backapp
-  labels:
-    training: block3
-    homework: backapp
-spec:
-  selector:
-    training: block3
-    homework: backapp
-  ports:
-    - port: 8080
-      targetPort: 8080
-      protocol: TCP

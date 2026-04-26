@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   name: frontapp
   labels:
-    training: block3
     homework: frontapp
+    training: block3
 spec:
+  ingressClassName: nginx
   rules:
     - http:
         paths:

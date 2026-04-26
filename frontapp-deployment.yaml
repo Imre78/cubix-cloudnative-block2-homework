@@ -3,19 +3,18 @@ kind: Deployment
 metadata:
   name: frontapp
   labels:
-    training: block3
+    app: frontapp
     homework: frontapp
+    training: block3
 spec:
   replicas: 1
   selector:
     matchLabels:
-      training: block3
-      homework: frontapp
+      app: frontapp
   template:
     metadata:
       labels:
-        training: block3
-        homework: frontapp
+        app: frontapp
     spec:
       containers:
         - name: frontapp
@@ -23,25 +22,7 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: BACK_URL
-              value: "http://backapp:8080"
             - name: APP_DEFAULT_MESSAGE
               value: "frontapp"
-            - name: JAVA_OPTS
-              value: ""
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontapp
-  labels:
-    training: block3
-    homework: frontapp
-spec:
-  selector:
-    training: block3
-    homework: frontapp
-  ports:
-    - port: 8080
-      targetPort: 8080
-      protocol: TCP
+            - name: BACK_URL
+              value: "http://backapp:8080"
