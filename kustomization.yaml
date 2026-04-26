@@ -1,0 +1,6 @@
+resources:
+  - backapp-deployment.yaml
+  - backapp-service.yaml
+  - frontapp-deployment.yaml
+  - frontapp-service.yaml
+  - frontapp-ingress.yaml
