@@ -4,18 +4,15 @@ metadata:
   name: frontapp
   labels:
     homework: frontapp
-    training: block4
 spec:
   replicas: 1
   selector:
     matchLabels:
       homework: frontapp
-      training: block4
   template:
     metadata:
       labels:
         homework: frontapp
-        training: block4
     spec:
       containers:
         - name: frontapp
