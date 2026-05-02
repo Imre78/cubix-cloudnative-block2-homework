@@ -1,0 +1,9 @@
+replicaCount: 1
+
+frontapp:
+  ingress:
+    enabled: true
+    host: other.cubix.localhost
+    path: /frontapp
+
+backapp: {}

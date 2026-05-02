@@ -1,0 +1,22 @@
+{{- if .Values.frontapp.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "cubix-hw5.frontappName" . }}
+  labels:
+    homework: frontapp
+    training: {{ .Values.global.training }}
+spec:
+  ingressClassName: {{ .Values.frontapp.ingress.className }}
+  rules:
+    - host: {{ .Values.frontapp.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.frontapp.ingress.path }}
+            pathType: {{ .Values.frontapp.ingress.pathType }}
+            backend:
+              service:
+                name: {{ include "cubix-hw5.frontappName" . }}
+                port:
+                  number: {{ .Values.frontapp.service.port }}
+{{- end }}

@@ -1,0 +1,32 @@
+global:
+  training: block5
+
+replicaCount: 1
+
+frontapp:
+  image: quay.io/drsylent/cubix/block3/homework-frontapp:springboot3
+  port: 8080
+  service:
+    type: ClusterIP
+    port: 8080
+  env:
+    appDefaultMessage: frontapp
+    javaOpts: ""
+    extra: {}
+  ingress:
+    enabled: false
+    className: nginx
+    host: ""
+    path: /frontapp
+    pathType: Prefix
+
+backapp:
+  image: quay.io/drsylent/cubix/block3/homework-backapp:springboot3
+  port: 8080
+  service:
+    type: ClusterIP
+    port: 8080
+  env:
+    appDefaultMessage: backapp
+    javaOpts: ""
+    extra: {}
