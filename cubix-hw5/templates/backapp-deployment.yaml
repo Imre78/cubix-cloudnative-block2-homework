@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cubix-hw5.backappName" . }}
+  labels:
+    homework: backapp
+    training: {{ .Values.global.training }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      homework: backapp
+      training: {{ .Values.global.training }}
+  template:
+    metadata:
+      labels:
+        homework: backapp
+        training: {{ .Values.global.training }}
+    spec:
+      containers:
+        - name: backapp
+          image: {{ .Values.backapp.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.backapp.port }}
+          env:
+            - name: APP_DEFAULT_MESSAGE
+              value: {{ .Values.backapp.env.appDefaultMessage | quote }}
+            - name: JAVA_OPTS
+              value: {{ .Values.backapp.env.javaOpts | quote }}
+            {{- range $name, $value := .Values.backapp.env.extra }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+            {{- end }}

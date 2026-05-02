@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cubix-hw5.backappName" . }}
+  labels:
+    homework: backapp
+    training: {{ .Values.global.training }}
+spec:
+  type: {{ .Values.backapp.service.type }}
+  selector:
+    homework: backapp
+    training: {{ .Values.global.training }}
+  ports:
+    - port: {{ .Values.backapp.service.port }}
+      targetPort: {{ .Values.backapp.port }}

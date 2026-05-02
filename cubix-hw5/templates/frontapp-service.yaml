@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cubix-hw5.frontappName" . }}
+  labels:
+    homework: frontapp
+    training: {{ .Values.global.training }}
+spec:
+  type: {{ .Values.frontapp.service.type }}
+  selector:
+    homework: frontapp
+    training: {{ .Values.global.training }}
+  ports:
+    - port: {{ .Values.frontapp.service.port }}
+      targetPort: {{ .Values.frontapp.port }}

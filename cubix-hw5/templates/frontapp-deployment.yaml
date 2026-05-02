@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cubix-hw5.frontappName" . }}
+  labels:
+    homework: frontapp
+    training: {{ .Values.global.training }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      homework: frontapp
+      training: {{ .Values.global.training }}
+  template:
+    metadata:
+      labels:
+        homework: frontapp
+        training: {{ .Values.global.training }}
+    spec:
+      containers:
+        - name: frontapp
+          image: {{ .Values.frontapp.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.frontapp.port }}
+          env:
+            - name: BACK_URL
+              value: "http://{{ include "cubix-hw5.backappName" . }}:{{ .Values.backapp.service.port }}"
+            - name: APP_DEFAULT_MESSAGE
+              value: {{ .Values.frontapp.env.appDefaultMessage | quote }}
+            - name: JAVA_OPTS
+              value: {{ .Values.frontapp.env.javaOpts | quote }}
+            {{- range $name, $value := .Values.frontapp.env.extra }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+            {{- end }}

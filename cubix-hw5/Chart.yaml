@@ -1,0 +1,6 @@
+apiVersion: v2
+name: cubix-hw5
+version: 0.1.0
+description: Cubix Cloud Native Block 5 Helm homework chart for frontapp and backapp
+type: application
+appVersion: "springboot3"
