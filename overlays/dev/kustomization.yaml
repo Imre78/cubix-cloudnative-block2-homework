@@ -2,3 +2,9 @@ namespace: hw4-dev
 
 resources:
   - ../../base
+  - namespace.yaml
+
+labels:
+  - pairs:
+      training: block4
+    includeSelectors: true
